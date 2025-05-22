@@ -26,7 +26,7 @@ const ProductPhotos = () => {
 
   return (
     <div className="flex flex-col gap-8 w-full ">
-      <div className="p-2 border-0 shadow-xl rounded-md">
+      <div className="p-2">
         <Image src="/images/shirt.jpg" alt="Product" width={500} height={500} />
       </div>
       <div className="flex gap-4">
