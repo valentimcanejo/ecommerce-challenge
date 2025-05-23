@@ -1,5 +1,3 @@
-import Image from "next/image";
-import SecaoProduto from "../components/ProductPhotos";
 import ProductPhotos from "../components/ProductPhotos";
 import BuySection from "../components/BuySection";
 import ProductDescription from "../components/ProductDescription";
