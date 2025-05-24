@@ -5,16 +5,12 @@ import { Button } from "./ui/button";
 import toast from "react-hot-toast";
 
 const ShoppingCart = () => {
-  // const [quantity, setQuantity] = useState([]);
   const { increaseQuantity, decreaseItem, cartItems, buyCart } = useCart();
 
-  const handleAddProduct = (item: Omit<ConvertedCartItems, "quantity">) => {
+  const handleAddProduct = (item: Omit<ConvertedCartItems, "quantity">) =>
     increaseQuantity(item);
-  };
 
-  const handleRemoveProduct = (item: Omit<ConvertedCartItems, "quantity">) => {
-    decreaseItem(item);
-  };
+  const handleRemoveProduct = (item: ConvertedCartItems) => decreaseItem(item);
 
   const handleBuyCart = () => {
     buyCart();

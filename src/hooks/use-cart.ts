@@ -68,7 +68,11 @@ export const useCart = () => {
     setCart(updatedCart);
   };
 
-  const decreaseItem = (item: Omit<ConvertedCartItems, "quantity">) => {
+  const decreaseItem = (item: ConvertedCartItems) => {
+    if (item.quantity === 1) {
+      return;
+    }
+
     const updatedCart = cartItems
       .map((cartItem) =>
         cartItem.productId === item.productId &&
@@ -92,11 +96,13 @@ export const useCart = () => {
           cartItem.productSize === item.productSize
         )
     );
+
     setCartItems(updatedCart);
     setCart(updatedCart);
   };
 
   const isInCart = (item: Omit<ConvertedCartItems, "quantity">) => {
+    console.log(item);
     return cartItems.some(
       (cartItem) =>
         cartItem.productId === item.productId &&
