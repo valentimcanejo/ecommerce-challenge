@@ -5,8 +5,14 @@ export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 export const colorMap: Record<string, string> = {
   "#ffffff": "bg-white",
-  "#000000": "bg-black",
-  "#3b82f6": "bg-blue-500",
-  "#22c55e": "bg-green-500",
-  "#ef4444": "bg-red-500",
+  "#86f1ff": "bg-blue-400",
+  "#c0f5c9": "bg-green-400",
 };
+
+export const colorNames: Record<string, string> = {
+  branco: "white",
+  azul: "blue",
+  verde: "green",
+};
+
+export const changeColorLanguage = (color: string) => colorNames[color] || "";

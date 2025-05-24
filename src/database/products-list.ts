@@ -1,4 +1,4 @@
-interface SecondaryImage {
+interface ImageList {
   id: number;
   image: string;
   alt: string;
@@ -19,9 +19,10 @@ export interface Product {
   id: number;
   name: string;
   description: string;
-  mainImage: string;
   price: number;
-  secondaryImages: SecondaryImage[];
+  imageList: {
+    [key: string]: ImageList[];
+  };
   sizeList: Size[];
   colorList: Color[];
 }
@@ -31,25 +32,75 @@ export const productsList: Product[] = [
     id: 1,
     name: "Camiseta Lisa da Montink",
     description: "Camiseta Lisa da Montink",
-    mainImage: "/images/main-image.png",
     price: 29.9,
-    secondaryImages: [
-      {
-        id: 1,
-        image: "/images/second-image.png",
-        alt: "Primeira Imagem",
-      },
-      {
-        id: 2,
-        image: "/images/third-image.png",
-        alt: "Segunda Imagem",
-      },
-      {
-        id: 3,
-        image: "/images/fourth-image.png",
-        alt: "Terceira Imagem",
-      },
-    ],
+    imageList: {
+      white: [
+        {
+          id: 1,
+          image: "/images/white/main-image.png",
+          alt: "Primeira Imagem",
+        },
+        {
+          id: 2,
+          image: "/images/white/second-image.png",
+          alt: "Segunda Imagem",
+        },
+        {
+          id: 3,
+          image: "/images/white/third-image.png",
+          alt: "Terceira Imagem",
+        },
+        {
+          id: 4,
+          image: "/images/white/fourth-image.png",
+          alt: "Quarta Imagem",
+        },
+      ],
+      blue: [
+        {
+          id: 1,
+          image: "/images/blue/main-image.png",
+          alt: "Primeira Imagem",
+        },
+        {
+          id: 2,
+          image: "/images/blue/second-image.png",
+          alt: "Segunda Imagem",
+        },
+        {
+          id: 3,
+          image: "/images/blue/third-image.png",
+          alt: "Terceira Imagem",
+        },
+        {
+          id: 4,
+          image: "/images/blue/fourth-image.png",
+          alt: "Quarta Imagem",
+        },
+      ],
+      green: [
+        {
+          id: 1,
+          image: "/images/green/main-image.png",
+          alt: "Primeira Imagem",
+        },
+        {
+          id: 2,
+          image: "/images/green/second-image.png",
+          alt: "Segunda Imagem",
+        },
+        {
+          id: 3,
+          image: "/images/green/third-image.png",
+          alt: "Terceira Imagem",
+        },
+        {
+          id: 4,
+          image: "/images/green/fourth-image.png",
+          alt: "Quarta Imagem",
+        },
+      ],
+    },
     sizeList: [
       {
         id: 1,
@@ -72,24 +123,13 @@ export const productsList: Product[] = [
       },
       {
         id: 2,
-        color: "preto",
-        hexa: "#000000",
+        color: "azul",
+        hexa: "#86f1ff",
       },
       {
         id: 3,
-        color: "azul",
-        hexa: "#3b82f6",
-      },
-
-      {
-        id: 4,
         color: "verde",
-        hexa: "#22c55e",
-      },
-      {
-        id: 5,
-        color: "vermelho",
-        hexa: "#ef4444",
+        hexa: "#c0f5c9",
       },
     ],
   },

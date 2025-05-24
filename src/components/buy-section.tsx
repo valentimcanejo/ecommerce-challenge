@@ -25,38 +25,37 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
         </h1>
 
         <Button>Adicionar ao Carrinho</Button>
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>Escolha a cor:</span>
-        <div className="flex gap-2">
-          {product.colorList?.map(({ id, hexa, color }) => (
-            <Link
-              href={`?cor=${color}&tamanho=${currentSize}`}
-              key={id}
-              className={`w-8 h-8 rounded-md ${colorMap[hexa]} ${
-                currentColor === color ? "border-2 border-primary" : ""
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <span>Escolha o tamanho:</span>
-        <div className="flex gap-2">
-          {product.sizeList?.map(({ id, size }) => (
-            <Button
-              key={id}
-              asChild
-              variant={currentSize === size ? "outline" : "default"}
-            >
+        <div className="flex flex-col gap-2">
+          <span>Escolha a cor:</span>
+          <div className="flex gap-2">
+            {product.colorList?.map(({ id, hexa, color }) => (
               <Link
-                href={`?cor=${currentColor}&tamanho=${size}`}
-                className={`w-8 h-8 rounded-md`}
+                href={`?cor=${color}&tamanho=${currentSize}`}
+                key={id}
+                className={`w-8 h-8 rounded-md shadow-lg border ${
+                  colorMap[hexa]
+                } ${currentColor === color ? "border-2 border-primary" : ""}`}
+              />
+            ))}
+          </div>
+
+          <span>Escolha o tamanho:</span>
+          <div className="flex gap-2">
+            {product.sizeList?.map(({ id, size }) => (
+              <Button
+                key={id}
+                asChild
+                variant={currentSize === size ? "outline" : "default"}
               >
-                {size}
-              </Link>
-            </Button>
-          ))}
+                <Link
+                  href={`?cor=${currentColor}&tamanho=${size}`}
+                  className={`w-8 h-8 rounded-md`}
+                >
+                  {size}
+                </Link>
+              </Button>
+            ))}
+          </div>
         </div>
       </div>
 
