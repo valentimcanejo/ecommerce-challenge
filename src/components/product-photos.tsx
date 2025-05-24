@@ -19,8 +19,6 @@ const ProductPhotos = ({ product }: ProductPhotosProps) => {
   );
 
   useEffect(() => {
-    console.log(product.imageList[changeColorLanguage(currentColor)]);
-
     setMainImage(product.imageList[changeColorLanguage(currentColor)][0].image);
   }, [currentColor, product.imageList]);
 

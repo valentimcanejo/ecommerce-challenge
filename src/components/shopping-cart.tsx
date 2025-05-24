@@ -1,36 +1,68 @@
 import Image from "next/image";
-import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
+import { ConvertedCartItems, useCart } from "../hooks/use-cart";
+import { Button } from "./ui/button";
+import toast from "react-hot-toast";
 
 const ShoppingCart = () => {
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState([]);
+  const { increaseQuantity, decreaseItem, cartItems, buyCart } = useCart();
+
+  const handleAddProduct = (item: Omit<ConvertedCartItems, "quantity">) => {
+    increaseQuantity(item);
+  };
+
+  const handleRemoveProduct = (item: Omit<ConvertedCartItems, "quantity">) => {
+    decreaseItem(item);
+  };
+
+  const handleBuyCart = () => {
+    buyCart();
+    toast.success("Compra realizada com sucesso", {
+      position: "bottom-center",
+    });
+  };
 
   return (
     <aside className="w-sm md:w-lg right-0 bg-primary h-screen fixed p-4 z-20 text-white flex flex-col gap-4">
-      <h1 className="text-xl">Lista de produtos</h1>
-      <div className="flex gap-2 items-center w-full justify-between">
-        <div className="flex items-center gap-2">
-          <div className="rounded-md">
-            <Image
-              src="/images/shirt.jpg"
-              alt="Product"
-              width={60}
-              height={60}
-            />
-          </div>
-          <span>Camiseta Lisa da Montink</span>
-        </div>
+      <h1 className="text-2xl">Lista de produtos</h1>
+      {cartItems?.length === 0 ? (
+        <span>Seu carrinho está vazio</span>
+      ) : (
+        <div className="flex flex-col gap-4">
+          {cartItems?.map((item, index) => (
+            <div
+              className="flex gap-2 items-center w-full justify-between"
+              key={index}
+            >
+              <div className="flex items-center gap-2">
+                <div className="rounded-md">
+                  <Image
+                    src={item.productImage}
+                    alt="Product"
+                    width={60}
+                    height={60}
+                  />
+                </div>
+                <span>{item.productName}</span>
+              </div>
 
-        <div className="flex items-center gap-2 border p-2 rounded-md">
-          <button onClick={() => setQuantity(quantity - 1)}>
-            <Minus size={24} />
-          </button>
-          <span className="text-lg">{quantity}</span>
-          <button onClick={() => setQuantity(quantity + 1)}>
-            <Plus size={24} />
-          </button>
+              <div className="flex items-center gap-2 border p-2 rounded-md">
+                <button onClick={() => handleRemoveProduct(item)}>
+                  <Minus size={24} />
+                </button>
+                <span className="text-lg">{item.quantity}</span>
+                <button onClick={() => handleAddProduct(item)}>
+                  <Plus size={24} />
+                </button>
+              </div>
+            </div>
+          ))}
+          <Button variant={"secondary"} onClick={handleBuyCart}>
+            Finalizar Compra
+          </Button>
         </div>
-      </div>
+      )}
     </aside>
   );
 };

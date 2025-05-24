@@ -26,15 +26,8 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
 
         <AddToCartButton
           product={product}
-          selectedColor={
-            productsList[0].colorList.find(
-              (color) => color.color === currentColor
-            )?.id!
-          }
-          selectedSize={
-            productsList[0].sizeList.find((size) => size.size === currentSize)
-              ?.id!
-          }
+          selectedColor={currentColor as string}
+          selectedSize={currentSize as string}
         />
         <div className="flex flex-col gap-2">
           <span>Escolha a cor:</span>
