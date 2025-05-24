@@ -10,12 +10,17 @@ const ProductDescription = ({ product }: ProductPhotosProps) => {
     <div className="flex flex-col  gap-8  w-full">
       <p className="text-2xl">{product.name}</p>
       <div className="flex gap-2 items-center">
-        <p>{product.price}</p>
+        <p>5,0</p>
         {Array.from({ length: 5 }).map((_, index) => (
           <Star key={index} className="w-5 h-5" />
         ))}
       </div>
-      <span>{product.price}</span>
+      <span>
+        {product.price.toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })}
+      </span>
 
       <p className="text-lg">{product.description}</p>
     </div>

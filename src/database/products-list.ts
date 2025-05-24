@@ -12,6 +12,7 @@ interface Size {
 interface Color {
   id: number;
   color: string;
+  hexa: string;
 }
 
 export interface Product {
@@ -71,15 +72,29 @@ export const productsList: Product[] = [
     colorList: [
       {
         id: 1,
-        color: "bg-blue-400",
+        color: "branco",
+        hexa: "#ffffff",
       },
       {
         id: 2,
-        color: "bg-green-400",
+        color: "preto",
+        hexa: "#000000",
       },
       {
         id: 3,
-        color: "bg-red-400",
+        color: "azul",
+        hexa: "#3b82f6",
+      },
+
+      {
+        id: 4,
+        color: "verde",
+        hexa: "#22c55e",
+      },
+      {
+        id: 5,
+        color: "vermelho",
+        hexa: "#ef4444",
       },
     ],
   },
