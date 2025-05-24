@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Product } from "../database/products-list";
-import { colorMap } from "../lib/utils";
+import { Product, productsList } from "../database/products-list";
+import { changeColorLanguage, colorMap } from "../lib/utils";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import CEPSearch from "./cep-search";
+import AddToCartButton from "./add-to-cart-button";
 
 interface BuySectionProps {
   product: Product;
@@ -24,7 +24,18 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
           })}
         </h1>
 
-        <Button>Adicionar ao Carrinho</Button>
+        <AddToCartButton
+          product={product}
+          selectedColor={
+            productsList[0].colorList.find(
+              (color) => color.color === currentColor
+            )?.id!
+          }
+          selectedSize={
+            productsList[0].sizeList.find((size) => size.size === currentSize)
+              ?.id!
+          }
+        />
         <div className="flex flex-col gap-2">
           <span>Escolha a cor:</span>
           <div className="flex gap-2">
