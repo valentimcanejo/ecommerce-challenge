@@ -1,11 +1,10 @@
 "use client";
 
 import { useCart } from "../hooks/use-cart";
-import { Product, productsList } from "../database/products-list";
+import { Product } from "../database/products-list";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
 import { changeColorLanguage } from "../lib/utils";
-import { useEffect, useState } from "react";
 
 interface AddToCartButtonProps {
   product: Product;

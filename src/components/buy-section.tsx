@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Product, productsList } from "../database/products-list";
-import { changeColorLanguage, colorMap } from "../lib/utils";
+import { Product } from "../database/products-list";
+import { colorMap } from "../lib/utils";
 import { Button } from "./ui/button";
 import CEPSearch from "./cep-search";
 import AddToCartButton from "./add-to-cart-button";

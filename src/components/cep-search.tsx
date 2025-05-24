@@ -3,7 +3,7 @@ import { useState } from "react";
 import useCepFinder, { Address } from "../hooks/use-cep-finder";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Check, CheckCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Loader2 } from "lucide-react";
 
 const CEPSearch = () => {
   const [cep, setCep] = useState("");
