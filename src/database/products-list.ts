@@ -31,28 +31,23 @@ export const productsList: Product[] = [
     id: 1,
     name: "Camiseta Lisa da Montink",
     description: "Camiseta Lisa da Montink",
-    mainImage: "/images/shirt.jpg",
+    mainImage: "/images/main-image.png",
     price: 29.9,
     secondaryImages: [
       {
         id: 1,
-        image: "/images/shirt.jpg",
+        image: "/images/second-image.png",
         alt: "Primeira Imagem",
       },
       {
         id: 2,
-        image: "/images/shirt.jpg",
+        image: "/images/third-image.png",
         alt: "Segunda Imagem",
       },
       {
         id: 3,
-        image: "/images/shirt.jpg",
+        image: "/images/fourth-image.png",
         alt: "Terceira Imagem",
-      },
-      {
-        id: 4,
-        image: "/images/shirt.jpg",
-        alt: "Quarta Imagem",
       },
     ],
     sizeList: [

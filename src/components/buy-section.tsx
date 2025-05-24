@@ -3,6 +3,7 @@ import { Product } from "../database/products-list";
 import { colorMap } from "../lib/utils";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import CEPSearch from "./cep-search";
 
 interface BuySectionProps {
   product: Product;
@@ -12,7 +13,7 @@ interface BuySectionProps {
 const BuySection = ({ product, searchParams }: BuySectionProps) => {
   const currentColor = searchParams.cor || "branco";
   const currentSize = searchParams.tamanho || "M";
-  console.log(currentColor);
+
   return (
     <div className="flex w-full flex-col justify-between border gap-8 p-4">
       <div className="flex flex-col gap-4">
@@ -22,10 +23,6 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
             currency: "BRL",
           })}
         </h1>
-        <div className="flex flex-col">
-          <h2>Chegará em 5 dias no endereço:</h2>
-          <h3>Rua da Montink, 123</h3>
-        </div>
 
         <Button>Adicionar ao Carrinho</Button>
       </div>
@@ -63,10 +60,7 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <Input placeholder="CEP" />
-        <Button fullWidth>Calcular frete</Button>
-      </div>
+      <CEPSearch />
     </div>
   );
 };
