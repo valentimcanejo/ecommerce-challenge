@@ -7,12 +7,12 @@ import AddToCartButton from "./add-to-cart-button";
 
 interface BuySectionProps {
   product: Product;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-const BuySection = ({ product, searchParams }: BuySectionProps) => {
-  const currentColor = searchParams.cor || "branco";
-  const currentSize = searchParams.tamanho || "M";
+const BuySection = async ({ product, searchParams }: BuySectionProps) => {
+  const currentColor = (await searchParams).cor || "branco";
+  const currentSize = (await searchParams).tamanho || "M";
 
   return (
     <div className="flex w-full flex-col justify-between border gap-8 p-4">

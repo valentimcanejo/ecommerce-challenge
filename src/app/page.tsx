@@ -3,12 +3,13 @@ import BuySection from "../components/buy-section";
 import ProductDescription from "../components/product-description";
 import { productsList } from "../database/products-list";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 
-interface HomeProps {
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export default function Home({ searchParams }: HomeProps) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const product = productsList[0];
 
   return (
@@ -16,9 +17,11 @@ export default function Home({ searchParams }: HomeProps) {
       <div>
         <Toaster />
       </div>
-      <ProductPhotos product={product} />
+      <Suspense>
+        <ProductPhotos product={product} />
+      </Suspense>
       <ProductDescription product={product} />
-      <BuySection product={product} searchParams={searchParams} />
+      <BuySection product={product} searchParams={params} />
     </div>
   );
 }
