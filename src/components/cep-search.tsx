@@ -27,6 +27,8 @@ const CEPSearch = () => {
       setError("");
       setAddress(address);
     } catch (error) {
+      console.error(error);
+
       setError("Erro ao buscar o endereço");
     } finally {
       setLoading(false);

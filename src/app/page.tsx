@@ -4,11 +4,11 @@ import ProductDescription from "../components/product-description";
 import { productsList } from "../database/products-list";
 import { Toaster } from "react-hot-toast";
 
-export default function Home({
-  searchParams,
-}: {
+interface HomeProps {
   searchParams: { [key: string]: string | string[] | undefined };
-}) {
+}
+
+export default function Home({ searchParams }: HomeProps) {
   const product = productsList[0];
 
   return (
