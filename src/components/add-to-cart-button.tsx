@@ -33,27 +33,15 @@ const AddToCartButton = ({
   const isItemInCart = isInCart(cartItem);
 
   const handleClick = () => {
-    if (isItemInCart) {
-      removeItem(cartItem);
-      toast.success("Produto removido do carrinho", {
-        position: "bottom-center",
-      });
-    } else {
-      addItem(cartItem);
-      toast.success("Produto adicionado ao carrinho", {
-        position: "bottom-center",
-      });
-    }
+    if (isItemInCart) return;
+
+    addItem(cartItem);
+    toast.success("Produto adicionado ao carrinho", {
+      position: "bottom-center",
+    });
   };
 
-  return (
-    <Button
-      onClick={handleClick}
-      variant={isItemInCart ? "destructive" : "default"}
-    >
-      {isItemInCart ? "Remover do carrinho" : "Adicionar ao carrinho"}
-    </Button>
-  );
+  return <Button onClick={handleClick}>Adicionar ao carrinho</Button>;
 };
 
 export default AddToCartButton;

@@ -18,6 +18,7 @@ const ShoppingCart = () => {
       position: "bottom-center",
     });
   };
+  console.log(cartItems);
 
   return (
     <aside className="w-sm md:w-lg right-0 bg-primary h-screen fixed p-4 z-20 text-white flex flex-col gap-4">
@@ -40,7 +41,15 @@ const ShoppingCart = () => {
                     height={60}
                   />
                 </div>
-                <span>{item.productName}</span>
+                <div className="flex flex-col">
+                  <span>{`${item.productName} (${item.productSize})`}</span>
+                  <span>
+                    {item.productPrice.toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </span>
+                </div>
               </div>
 
               <div className="flex items-center gap-2 border p-2 rounded-md">
@@ -54,6 +63,22 @@ const ShoppingCart = () => {
               </div>
             </div>
           ))}
+          {
+            <div className="flex justify-end">
+              <span className="text-lg">
+                Total:{" "}
+                {cartItems
+                  .reduce(
+                    (acc, item) => acc + item.productPrice * item.quantity,
+                    0
+                  )
+                  .toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+              </span>
+            </div>
+          }
           <Button variant={"secondary"} onClick={handleBuyCart}>
             Finalizar Compra
           </Button>

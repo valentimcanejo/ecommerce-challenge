@@ -57,6 +57,9 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
                 key={id}
                 asChild
                 variant={currentSize === size ? "outline" : "default"}
+                className={`${
+                  currentSize === size ? "border-2 border-primary" : ""
+                }`}
               >
                 <Link
                   href={`?${new URLSearchParams({
