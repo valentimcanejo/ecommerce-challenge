@@ -30,8 +30,12 @@ export interface Product {
 export const productsList: Product[] = [
   {
     id: "1",
-    name: "Camiseta Lisa da Montink",
-    description: "Camiseta Lisa da Montink",
+    name: "Camiseta Montink",
+    description: `
+          A Camiseta da Montink é sinônimo de conforto, estilo e versatilidade. 
+          Confeccionada com materiais de alta qualidade, ela oferece um caimento perfeito e toque macio, 
+          ideal para o dia a dia. Disponível nas cores branco, azul e verde, e nos tamanhos P, M e G, combina com diversos estilos e ocasiões. 
+    `,
     price: 29.9,
     imageList: {
       white: [

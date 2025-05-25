@@ -17,7 +17,6 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
   // console.log(await searchParams);
   const { cor: currentColor = "branco", tamanho: currentSize = "M" } =
     use(searchParams);
-  console.log(currentColor, currentSize);
 
   return (
     <div className="flex w-full flex-col justify-between border gap-8 p-4">
@@ -39,7 +38,10 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
           <div className="flex gap-2">
             {product.colorList?.map(({ id, hexa, color }) => (
               <Link
-                href={`?cor=${color}&tamanho=${currentSize}`}
+                href={`?${new URLSearchParams({
+                  cor: color,
+                  tamanho: currentSize as string,
+                })}`}
                 key={id}
                 className={`w-8 h-8 rounded-md shadow-lg border ${
                   colorMap[hexa]
@@ -57,8 +59,10 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
                 variant={currentSize === size ? "outline" : "default"}
               >
                 <Link
-                  href={`?cor=${currentColor}&tamanho=${size}`}
-                  className={`w-8 h-8 rounded-md`}
+                  href={`?${new URLSearchParams({
+                    cor: currentColor as string,
+                    tamanho: size,
+                  })}`}
                 >
                   {size}
                 </Link>
