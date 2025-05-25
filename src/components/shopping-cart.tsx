@@ -8,7 +8,7 @@ import CEPSearch from "./cep-search";
 
 const ShoppingCart = () => {
   const { increaseQuantity, decreaseItem, cartItems, buyCart } = useCart();
-  const { address } = useCepStore();
+  const { address, clearAddress } = useCepStore();
 
   const handleAddProduct = (item: Omit<ConvertedCartItems, "quantity">) =>
     increaseQuantity(item);
@@ -17,6 +17,7 @@ const ShoppingCart = () => {
 
   const handleBuyCart = () => {
     buyCart();
+    clearAddress();
     toast.success("Compra realizada com sucesso", {
       position: "bottom-center",
     });
