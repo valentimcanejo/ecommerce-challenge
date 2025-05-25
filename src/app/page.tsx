@@ -6,9 +6,9 @@ import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 
 export default async function Home({
-  params,
+  searchParams,
 }: {
-  params: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const product = productsList[0];
 
@@ -21,7 +21,7 @@ export default async function Home({
         <ProductPhotos product={product} />
       </Suspense>
       <ProductDescription product={product} />
-      <BuySection product={product} searchParams={params} />
+      <BuySection product={product} searchParams={searchParams} />
     </div>
   );
 }

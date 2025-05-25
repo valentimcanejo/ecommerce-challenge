@@ -4,15 +4,20 @@ import { colorMap } from "../lib/utils";
 import { Button } from "./ui/button";
 import CEPSearch from "./cep-search";
 import AddToCartButton from "./add-to-cart-button";
+import { use } from "react";
 
 interface BuySectionProps {
   product: Product;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-const BuySection = async ({ product, searchParams }: BuySectionProps) => {
-  const currentColor = (await searchParams).cor || "branco";
-  const currentSize = (await searchParams).tamanho || "M";
+const BuySection = ({ product, searchParams }: BuySectionProps) => {
+  // const currentColor = (await searchParams).cor || "branco";
+  // const currentSize = (await searchParams).tamanho || "M";
+  // console.log(await searchParams);
+  const { cor: currentColor = "branco", tamanho: currentSize = "M" } =
+    use(searchParams);
+  console.log(currentColor, currentSize);
 
   return (
     <div className="flex w-full flex-col justify-between border gap-8 p-4">
