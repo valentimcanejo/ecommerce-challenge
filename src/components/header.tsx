@@ -62,7 +62,7 @@ const Header = () => {
       {showShoppingCart && (
         <div
           ref={cartRef}
-          className="absolute right-2 top-8 z-50 shadow-md rounded p-4"
+          className="absolute right-2 top-8 z-50 shadow-md h-full rounded p-4"
         >
           <ShoppingCart />
         </div>

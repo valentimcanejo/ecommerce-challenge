@@ -19,8 +19,6 @@ const CEPSearch = () => {
     try {
       await findAddress(cep);
 
-      // Após findAddress, o endereço estará na store no "address"
-      // Se address for null, é CEP inválido
       if (!useCepStore.getState().address) {
         setError("CEP inválido");
       }
