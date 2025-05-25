@@ -17,7 +17,7 @@ const AddToCartButton = ({
   selectedColor,
   selectedSize,
 }: AddToCartButtonProps) => {
-  const { addItem, removeItem, isInCart } = useCart();
+  const { addItem, isInCart } = useCart();
 
   const cartItem = {
     productId: product.id,
