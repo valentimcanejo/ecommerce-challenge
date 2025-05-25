@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## This is an e-commerce product screen — in this case, the product is a T-shirt. This project is part of a challenge from a company I'm applying to join.
 
 ## Getting Started
 
