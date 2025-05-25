@@ -44,12 +44,16 @@ const Header = () => {
   return (
     <>
       <header className="w-full p-2 bg-primary flex justify-between items-center sticky top-0 z-50">
-        <h1 className="text-white">Home</h1>
+        <h1 className="text-white">Loja</h1>
         <Button
           ref={buttonRef}
           onClick={() => setShowShoppingCart(!showShoppingCart)}
         >
-          {cartItems?.length}
+          {cartItems?.length > 0 && (
+            <span className="border rounded-full px-2 border-green-400">
+              {cartItems?.length}
+            </span>
+          )}
           <ShoppingCartIcon size={20} />
           Carrinho
         </Button>

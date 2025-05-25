@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CheckCircle, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { ConvertedCartItems, useCart } from "../hooks/use-cart";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
@@ -23,7 +23,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <aside className="w-sm md:w-lg right-0 bg-primary h-screen fixed p-4 z-20 text-white flex flex-col gap-4">
+    <aside className="w-full md:w-lg right-0 bg-primary h-screen fixed p-4 z-20 text-white flex flex-col gap-4">
       <h1 className="text-2xl">Lista de produtos</h1>
       {cartItems?.length === 0 ? (
         <span>Seu carrinho está vazio</span>
