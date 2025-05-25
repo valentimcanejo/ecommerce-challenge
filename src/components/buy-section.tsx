@@ -75,7 +75,7 @@ const BuySection = ({ product, searchParams }: BuySectionProps) => {
         </div>
       </div>
 
-      <CEPSearch />
+      {/* <CEPSearch /> */}
     </div>
   );
 };

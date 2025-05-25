@@ -1,11 +1,14 @@
 import Image from "next/image";
-import { Minus, Plus } from "lucide-react";
+import { CheckCircle, Minus, Plus } from "lucide-react";
 import { ConvertedCartItems, useCart } from "../hooks/use-cart";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
+import { useCepStore } from "../hooks/use-cep-finder";
+import CEPSearch from "./cep-search";
 
 const ShoppingCart = () => {
   const { increaseQuantity, decreaseItem, cartItems, buyCart } = useCart();
+  const { address } = useCepStore();
 
   const handleAddProduct = (item: Omit<ConvertedCartItems, "quantity">) =>
     increaseQuantity(item);
@@ -18,7 +21,6 @@ const ShoppingCart = () => {
       position: "bottom-center",
     });
   };
-  console.log(cartItems);
 
   return (
     <aside className="w-sm md:w-lg right-0 bg-primary h-screen fixed p-4 z-20 text-white flex flex-col gap-4">
@@ -79,7 +81,13 @@ const ShoppingCart = () => {
               </span>
             </div>
           }
-          <Button variant={"secondary"} onClick={handleBuyCart}>
+          <CEPSearch />
+
+          <Button
+            variant={"secondary"}
+            disabled={!address}
+            onClick={handleBuyCart}
+          >
             Finalizar Compra
           </Button>
         </div>

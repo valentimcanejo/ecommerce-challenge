@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { create } from "zustand";
 
 export interface ConvertedCartItems {
   productId: string;
@@ -12,13 +12,22 @@ export interface ConvertedCartItems {
   quantity: number;
 }
 
+interface CartStore {
+  cartItems: ConvertedCartItems[];
+  addItem: (item: Omit<ConvertedCartItems, "quantity">) => void;
+  increaseQuantity: (item: Omit<ConvertedCartItems, "quantity">) => void;
+  decreaseItem: (item: ConvertedCartItems) => void;
+  removeItem: (item: Omit<ConvertedCartItems, "quantity">) => void;
+  isInCart: (item: Omit<ConvertedCartItems, "quantity">) => boolean;
+  buyCart: () => void;
+}
+
 const getCart = (): ConvertedCartItems[] => {
   if (typeof window === "undefined") return [];
   const cart = localStorage.getItem("cart");
   if (cart) {
     try {
       const parsed = JSON.parse(cart);
-
       return parsed.cartItems || [];
     } catch {
       return [];
@@ -31,14 +40,11 @@ const setCart = (cartItems: ConvertedCartItems[]) => {
   localStorage.setItem("cart", JSON.stringify({ cartItems }));
 };
 
-export const useCart = () => {
-  const [cartItems, setCartItems] = useState<ConvertedCartItems[]>([]);
+export const useCart = create<CartStore>((set, get) => ({
+  cartItems: getCart(),
 
-  useEffect(() => {
-    setCartItems(getCart());
-  }, []);
-
-  const addItem = (item: Omit<ConvertedCartItems, "quantity">) => {
+  addItem: (item) => {
+    const { cartItems } = get();
     const existingItem = cartItems.find(
       (cartItem) =>
         cartItem.productId === item.productId &&
@@ -47,16 +53,17 @@ export const useCart = () => {
     );
 
     if (existingItem) {
-      increaseQuantity(item);
+      get().increaseQuantity(item);
     } else {
       const newItem: ConvertedCartItems = { ...item, quantity: 1 };
       const updatedCart = [...cartItems, newItem];
-      setCartItems(updatedCart);
+      set({ cartItems: updatedCart });
       setCart(updatedCart);
     }
-  };
+  },
 
-  const increaseQuantity = (item: Omit<ConvertedCartItems, "quantity">) => {
+  increaseQuantity: (item) => {
+    const { cartItems } = get();
     const updatedCart = cartItems.map((cartItem) =>
       cartItem.productId === item.productId &&
       cartItem.productColor === item.productColor &&
@@ -64,15 +71,12 @@ export const useCart = () => {
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
-    setCartItems(updatedCart);
+    set({ cartItems: updatedCart });
     setCart(updatedCart);
-  };
+  },
 
-  const decreaseItem = (item: ConvertedCartItems) => {
-    if (item.quantity === 1) {
-      return;
-    }
-
+  decreaseItem: (item) => {
+    const { cartItems } = get();
     const updatedCart = cartItems
       .map((cartItem) =>
         cartItem.productId === item.productId &&
@@ -83,11 +87,12 @@ export const useCart = () => {
       )
       .filter((cartItem) => cartItem.quantity > 0);
 
-    setCartItems(updatedCart);
+    set({ cartItems: updatedCart });
     setCart(updatedCart);
-  };
+  },
 
-  const removeItem = (item: Omit<ConvertedCartItems, "quantity">) => {
+  removeItem: (item) => {
+    const { cartItems } = get();
     const updatedCart = cartItems.filter(
       (cartItem) =>
         !(
@@ -96,40 +101,22 @@ export const useCart = () => {
           cartItem.productSize === item.productSize
         )
     );
-
-    setCartItems(updatedCart);
+    set({ cartItems: updatedCart });
     setCart(updatedCart);
-  };
+  },
 
-  const isInCart = (item: Omit<ConvertedCartItems, "quantity">) => {
-    console.log(item);
+  isInCart: (item) => {
+    const { cartItems } = get();
     return cartItems.some(
       (cartItem) =>
         cartItem.productId === item.productId &&
         cartItem.productColor === item.productColor &&
         cartItem.productSize === item.productSize
     );
-  };
+  },
 
-  const buyCart = () => {
-    setCartItems([]);
+  buyCart: () => {
+    set({ cartItems: [] });
     setCart([]);
-    localStorage.removeItem("cart");
-  };
-
-  const clearCart = () => {
-    setCartItems([]);
-    setCart([]);
-  };
-
-  return {
-    cartItems,
-    addItem,
-    increaseQuantity,
-    decreaseItem,
-    removeItem,
-    isInCart,
-    clearCart,
-    buyCart,
-  };
-};
+  },
+}));
