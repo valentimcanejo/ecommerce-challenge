@@ -18,9 +18,7 @@ const ShoppingCart = () => {
   const handleBuyCart = () => {
     buyCart();
     clearAddress();
-    toast.success("Compra realizada com sucesso", {
-      position: "bottom-center",
-    });
+    toast.success("Compra realizada com sucesso");
   };
 
   return (

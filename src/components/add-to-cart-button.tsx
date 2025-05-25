@@ -35,14 +35,10 @@ const AddToCartButton = ({
   const handleClick = () => {
     if (isItemInCart) {
       removeItem(cartItem);
-      toast.success("Produto removido do carrinho", {
-        position: "bottom-center",
-      });
+      toast.success("Produto removido do carrinho");
     } else {
       addItem(cartItem);
-      toast.success("Produto adicionado ao carrinho", {
-        position: "bottom-center",
-      });
+      toast.success("Produto adicionado ao carrinho");
     }
   };
 
